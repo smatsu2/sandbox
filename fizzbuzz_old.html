@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+	<div id="app">
+        <ul>
+            <li v-for="number in numbers">{{ number | fizzbuzz }}</li>
+        </ul>	
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+    var app = {
+            el: '#app',
+            data: {
+                numbers:[]  //this.numbers = Array.from(new Array(100)).map((v, i) => i + 1);
+            },
+            created : function() {
+                // 古いやり方（ループで初期化）
+                for(i=0; i< 100; i++) {
+                    this.numbers[i] = i + 1;
+                }
+            },
+            filters: {
+                fizzbuzz: function(number) {
+                    if (number % 15 === 0) {
+                        return 'FizzBuzz';
+                    } else if (number % 5 === 0) {
+                        return 'Buzz'
+                    } else if (number % 3 === 0) {
+                        return 'Fizz'
+                    } else {
+                        return number
+                    }
+                },
+            }
+        };
+          
+    new Vue(app);
+    </script>
+</body>
+</html>
